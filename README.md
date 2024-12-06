@@ -16,7 +16,7 @@ Swoft Db Component
 - composer command
 
 ```bash
-composer require swoft/db
+composer require swoft-fork/db
 ```
 
 ## Resources
