@@ -37,6 +37,7 @@ use function bean;
  * @method static Builder where($column, $operator = null, $value = null, string $boolean = 'and')
  * @method static Builder whereProp($column, $operator = null, $value = null, string $boolean = 'and')
  * @method static Builder orWhere($column, $operator = null, $value = null)
+ * @method static Builder orWhereProp($column, $operator = null, $value = null)
  * @method static Builder latest(string $column = null)
  * @method static Builder oldest(string $column = null)
  * @method static Collection hydrate(array $items)
@@ -817,6 +818,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * @return array
      * @throws DbException
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->toArray();
@@ -974,6 +976,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * @return bool
      * @throws DbException
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return !is_null($this->getModelAttribute($offset));
@@ -987,6 +990,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * @return mixed
      * @throws DbException
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->getAttributeValue($offset);
@@ -1001,6 +1005,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * @return void
      * @throws DbException
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->setModelAttribute($offset, $value);
@@ -1013,6 +1018,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->modelAttributes[$offset]);
