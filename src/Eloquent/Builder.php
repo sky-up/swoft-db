@@ -330,7 +330,7 @@ class Builder
      * @return $this
      * @throws DbException
      */
-    public function latest(string $column = null)
+    public function latest(?string $column = null)
     {
         if (is_null($column)) {
             $createAtColumn = $this->model->getCreatedAtColumn();
@@ -356,7 +356,7 @@ class Builder
      * @return $this
      * @throws DbException
      */
-    public function oldest(string $column = null)
+    public function oldest(?string $column = null)
     {
         if (is_null($column)) {
             $createAtColumn = $this->model->getCreatedAtColumn();
@@ -602,7 +602,7 @@ class Builder
      * @return Model|static|mixed
      * @throws DbException
      */
-    public function firstOr(array $columns = ['*'], Closure $callback = null)
+    public function firstOr(array $columns = ['*'], ?Closure $callback = null)
     {
         if ($columns instanceof Closure) {
             $callback = $columns;
@@ -689,7 +689,7 @@ class Builder
      * @return bool
      * @throws DbException
      */
-    public function chunkById(int $count, callable $callback, string $column = null, string $alias = null): bool
+    public function chunkById(int $count, callable $callback, ?string $column = null, ?string $alias = null): bool
     {
         $column = is_null($column) ? $this->getModel()->getKeyName() : $column;
 
@@ -751,7 +751,7 @@ class Builder
      * @return static
      * @throws DbException
      */
-    public function forPageAfterId(int $perPage = 15, int $lastId = null, string $column = null): self
+    public function forPageAfterId(int $perPage = 15, ?int $lastId = null, ?string $column = null): self
     {
         // If column is null default user primary column name
         $column = is_null($column) ? $this->getModel()->getKeyName() : $column;
@@ -772,7 +772,7 @@ class Builder
      * @return static
      * @throws DbException
      */
-    public function forPageBeforeId(int $perPage = 15, int $lastId = null, string $column = null): self
+    public function forPageBeforeId(int $perPage = 15, ?int $lastId = null, ?string $column = null): self
     {
         // If column is null default user primary column name
         $column = is_null($column) ? $this->getModel()->getKeyName() : $column;
@@ -1127,7 +1127,7 @@ class Builder
      * @return string
      * @throws DbException
      */
-    public function insertGetId(array $values, string $sequence = null): string
+    public function insertGetId(array $values, ?string $sequence = null): string
     {
         $values = $this->model->getSafeAttributes($values);
         if (empty($values)) {

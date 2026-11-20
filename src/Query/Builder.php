@@ -473,8 +473,8 @@ class Builder implements PrototypeInterface
     public function join(
         $table,
         $first,
-        string $operator = null,
-        string $second = null,
+        ?string $operator = null,
+        ?string $second = null,
         string $type = 'inner',
         bool $where = false
     ): self {
@@ -540,8 +540,8 @@ class Builder implements PrototypeInterface
         $query,
         string $as,
         $first,
-        string $operator = null,
-        string $second = null,
+        ?string $operator = null,
+        ?string $second = null,
         string $type = 'inner',
         bool $where = false
     ): self {
@@ -564,7 +564,7 @@ class Builder implements PrototypeInterface
      *
      * @return static
      */
-    public function leftJoin(string $table, $first, string $operator = null, string $second = null): self
+    public function leftJoin(string $table, $first, ?string $operator = null, ?string $second = null): self
     {
         return $this->join($table, $first, $operator, $second, 'left');
     }
@@ -596,7 +596,7 @@ class Builder implements PrototypeInterface
      * @return static
      * @throws DbException
      */
-    public function leftJoinSub($query, string $as, $first, string $operator = null, string $second = null): self
+    public function leftJoinSub($query, string $as, $first, ?string $operator = null, ?string $second = null): self
     {
         return $this->joinSub($query, $as, $first, $operator, $second, 'left');
     }
@@ -611,7 +611,7 @@ class Builder implements PrototypeInterface
      *
      * @return static
      */
-    public function rightJoin(string $table, $first, string $operator = null, string $second = null): self
+    public function rightJoin(string $table, $first, ?string $operator = null, ?string $second = null): self
     {
         return $this->join($table, $first, $operator, $second, 'right');
     }
@@ -643,7 +643,7 @@ class Builder implements PrototypeInterface
      * @return static
      * @throws DbException
      */
-    public function rightJoinSub($query, string $as, $first, string $operator = null, string $second = null): self
+    public function rightJoinSub($query, string $as, $first, ?string $operator = null, ?string $second = null): self
     {
         return $this->joinSub($query, $as, $first, $operator, $second, 'right');
     }
@@ -658,7 +658,7 @@ class Builder implements PrototypeInterface
      *
      * @return static
      */
-    public function crossJoin(string $table, $first = null, string $operator = null, string $second = null): self
+    public function crossJoin(string $table, $first = null, ?string $operator = null, ?string $second = null): self
     {
         if ($first) {
             return $this->join($table, $first, $operator, $second, 'cross');
@@ -888,7 +888,7 @@ class Builder implements PrototypeInterface
      * @return static
      * @throws DbException
      */
-    public function whereColumn($first, string $operator = null, string $second = null, string $boolean = 'and'): self
+    public function whereColumn($first, ?string $operator = null, ?string $second = null, string $boolean = 'and'): self
     {
         // If the column is an array, we will assume it is an array of key-value pairs
         // and can add them each as a where clause. We will maintain the boolean we
@@ -926,7 +926,7 @@ class Builder implements PrototypeInterface
      * @return static
      * @throws DbException
      */
-    public function orWhereColumn($first, string $operator = null, string $second = null): self
+    public function orWhereColumn($first, ?string $operator = null, ?string $second = null): self
     {
         return $this->whereColumn($first, $operator, $second, 'or');
     }
@@ -2161,7 +2161,7 @@ class Builder implements PrototypeInterface
      * @return static
      * @throws DbException
      */
-    public function forPageAfterId(int $perPage = 15, int $lastId = null, string $column = 'id'): self
+    public function forPageAfterId(int $perPage = 15, ?int $lastId = null, string $column = 'id'): self
     {
         $this->orders = $this->removeExistingOrdersFor($column);
 
@@ -2182,7 +2182,7 @@ class Builder implements PrototypeInterface
      * @return static
      * @throws DbException
      */
-    public function forPageBeforeId(int $perPage = 15, int $lastId = null, string $column = 'id'): self
+    public function forPageBeforeId(int $perPage = 15, ?int $lastId = null, string $column = 'id'): self
     {
         $this->orders = $this->removeExistingOrdersFor($column);
 
@@ -2431,7 +2431,7 @@ class Builder implements PrototypeInterface
      * @return bool
      * @throws DbException
      */
-    public function chunkById(int $count, callable $callback, $column = 'id', string $alias = null): bool
+    public function chunkById(int $count, callable $callback, $column = 'id', ?string $alias = null): bool
     {
         $alias = $alias ?: $column;
 
@@ -2883,7 +2883,7 @@ class Builder implements PrototypeInterface
      * @return string
      * @throws DbException
      */
-    public function insertGetId(array $values, string $sequence = null): string
+    public function insertGetId(array $values, ?string $sequence = null): string
     {
         $sql = $this->grammar->compileInsertGetId($this, $values, $sequence);
 
@@ -3384,7 +3384,7 @@ class Builder implements PrototypeInterface
      *
      * @throws DbException
      */
-    protected function setQueryGrammarAndPostProcessor(Grammar $grammar = null, Processor $processor = null): void
+    protected function setQueryGrammarAndPostProcessor(?Grammar $grammar = null, ?Processor $processor = null): void
     {
         /* @var Pool $pool */
         $pool = BeanFactory::getBean($this->poolName);
@@ -3406,7 +3406,7 @@ class Builder implements PrototypeInterface
      *
      * @throws DbException
      */
-    protected function setQueryGrammar(string $driver, string $prefix, Grammar $grammar = null): void
+    protected function setQueryGrammar(string $driver, string $prefix, ?Grammar $grammar = null): void
     {
         if (!empty($grammar)) {
             $grammar->setTablePrefix($prefix);
@@ -3437,7 +3437,7 @@ class Builder implements PrototypeInterface
      *
      * @throws DbException
      */
-    protected function setPostProcessor(string $driver, Processor $processor = null): void
+    protected function setPostProcessor(string $driver, ?Processor $processor = null): void
     {
         if (!empty($processor)) {
             $this->processor = $processor;

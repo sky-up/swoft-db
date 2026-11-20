@@ -467,7 +467,7 @@ class Connection extends AbstractConnection implements ConnectionInterface
      * @return string
      * @throws DbException
      */
-    public function insertGetId(string $query, array $bindings = [], string $sequence = null): string
+    public function insertGetId(string $query, array $bindings = [], ?string $sequence = null): string
     {
         return $this->insertGetIdStatement($query, $bindings, $sequence);
     }
@@ -530,7 +530,7 @@ class Connection extends AbstractConnection implements ConnectionInterface
      * @return string
      * @throws DbException
      */
-    public function insertGetIdStatement(string $query, array $bindings = [], string $sequence = null): string
+    public function insertGetIdStatement(string $query, array $bindings = [], ?string $sequence = null): string
     {
         return $this->run($query, $bindings, function ($query, $bindings) use ($sequence) {
             $statement = $this->getPdo()->prepare($query);
@@ -871,7 +871,7 @@ class Connection extends AbstractConnection implements ConnectionInterface
      * @param int|null $toLevel
      *
      */
-    public function rollBack(int $toLevel = null): void
+    public function rollBack(?int $toLevel = null): void
     {
         $cm = $this->getConMananger();
         $ts = $cm->getTransactionTransactons($this->poolName);
@@ -897,7 +897,7 @@ class Connection extends AbstractConnection implements ConnectionInterface
      * @param int|null $toLevel
      *
      */
-    public function forceRollBack(int $toLevel = null): void
+    public function forceRollBack(?int $toLevel = null): void
     {
         // Next, we will actually perform this rollback within this database and fire the
         // rollback event. We will also set the current transaction level to the given

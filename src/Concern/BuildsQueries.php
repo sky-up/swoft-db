@@ -219,7 +219,7 @@ trait BuildsQueries
         int $lastId = 0,
         array $columns = ['*'],
         bool $useAfter = false,
-        string $primary = null
+        ?string $primary = null
     ): array {
         $list       = [];
         $thisLastId = 0;

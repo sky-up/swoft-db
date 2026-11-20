@@ -39,7 +39,7 @@ class Processor
      * @return string
      * @throws DbException
      */
-    public function processInsertGetId(Builder $query, $sql, $values, string $sequence = null): string
+    public function processInsertGetId(Builder $query, $sql, $values, ?string $sequence = null): string
     {
         return $query->getConnection()->insertGetId($sql, $values, $sequence);
     }

@@ -84,7 +84,7 @@ interface ConnectionInterface
      * @return string
      * @throws DbException
      */
-    public function insertGetId(string $query, array $bindings = [], string $sequence = null): string;
+    public function insertGetId(string $query, array $bindings = [], ?string $sequence = null): string;
 
     /**
      * Run an update statement against the database.
@@ -187,7 +187,7 @@ interface ConnectionInterface
      *
      * @param int|null $toLevel
      */
-    public function forceRollBack(int $toLevel = null): void;
+    public function forceRollBack(?int $toLevel = null): void;
 
     /**
      * Get the number of active transactions.

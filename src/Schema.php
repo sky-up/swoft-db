@@ -49,7 +49,7 @@ class Schema
      * @return Builder
      * @throws DbException
      */
-    public static function getSchemaBuilder(string $pool = Pool::DEFAULT_POOL, Grammar $grammar = null)
+    public static function getSchemaBuilder(string $pool = Pool::DEFAULT_POOL, ?Grammar $grammar = null)
     {
         return Builder::new($pool, $grammar);
     }

@@ -482,7 +482,7 @@ trait HasAttributes
      *
      * @return mixed|array
      */
-    public function getModelOriginal(string $key = null, $default = null)
+    public function getModelOriginal(?string $key = null, $default = null)
     {
         return Arr::get($this->modelOriginal, $key, $default);
     }

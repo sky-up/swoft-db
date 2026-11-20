@@ -90,7 +90,7 @@ class Blueprint
      *
      * @return Blueprint
      */
-    public static function new($table, Closure $callback = null, $prefix = ''): self
+    public static function new($table, ?Closure $callback = null, $prefix = ''): self
     {
         $instance = self::__instance();
 
@@ -356,8 +356,8 @@ class Blueprint
         string $to,
         string $type,
         int $length,
-        string $default = null,
-        string $comment = null,
+        ?string $default = null,
+        ?string $comment = null,
         $unsigned = ''
     ) {
         return $this->addCommand(
@@ -762,7 +762,7 @@ class Blueprint
      *
      * @return ColumnDefinition
      */
-    public function integer(string $column, bool $autoIncrement = false, bool $unsigned = false, int $length = null)
+    public function integer(string $column, bool $autoIncrement = false, bool $unsigned = false, ?int $length = null)
     {
         return $this->addColumn('integer', $column, compact('autoIncrement', 'unsigned', 'length'));
     }
@@ -777,7 +777,7 @@ class Blueprint
      *
      * @return ColumnDefinition
      */
-    public function tinyInteger(string $column, bool $autoIncrement = false, bool $unsigned = false, int $length = null)
+    public function tinyInteger(string $column, bool $autoIncrement = false, bool $unsigned = false, ?int $length = null)
     {
         return $this->addColumn('tinyInteger', $column, compact('autoIncrement', 'unsigned', 'length'));
     }
@@ -796,7 +796,7 @@ class Blueprint
         string $column,
         bool $autoIncrement = false,
         bool $unsigned = false,
-        int $length = null
+        ?int $length = null
     ) {
         return $this->addColumn('smallInteger', $column, compact('autoIncrement', 'unsigned', 'length'));
     }
@@ -815,7 +815,7 @@ class Blueprint
         string $column,
         bool $autoIncrement = false,
         bool $unsigned = false,
-        int $length = null
+        ?int $length = null
     ) {
         return $this->addColumn('mediumInteger', $column, compact('autoIncrement', 'unsigned', 'length'));
     }
@@ -830,7 +830,7 @@ class Blueprint
      *
      * @return ColumnDefinition
      */
-    public function bigInteger(string $column, bool $autoIncrement = false, bool $unsigned = false, int $length = null)
+    public function bigInteger(string $column, bool $autoIncrement = false, bool $unsigned = false, ?int $length = null)
     {
         return $this->addColumn('bigInteger', $column, compact('autoIncrement', 'unsigned', 'length'));
     }

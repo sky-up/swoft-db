@@ -174,7 +174,7 @@ class Builder
      *
      * @throws DbException
      */
-    protected function setSchemaGrammar(Grammar $grammar = null): void
+    protected function setSchemaGrammar(?Grammar $grammar = null): void
     {
         /* @var Pool $pool */
         $pool = BeanFactory::getBean($this->poolName);
@@ -479,7 +479,7 @@ class Builder
      *
      * @return Blueprint
      */
-    protected function createBlueprint(string $table, Closure $callback = null)
+    protected function createBlueprint(string $table, ?Closure $callback = null)
     {
         $prefix = $this->grammar->getTablePrefix();
 
